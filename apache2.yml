@@ -1,0 +1,15 @@
+---
+- hosts: test
+  become: yes
+  tasks:
+
+  - name: Installing apache pkg
+    apt:
+        name: apache2
+        state: latest
+
+  - name: install php
+    apt: 
+        name: libapache2-mod-php
+        state: latest
+...
