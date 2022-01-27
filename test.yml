@@ -1,0 +1,9 @@
+---
+- name: basic playbook
+  hosts: test
+  tasks: 
+    -  apt:
+          update_cache: yes
+          upgrade: full
+          autoremove: yes
+...
