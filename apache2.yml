@@ -4,12 +4,17 @@
   tasks:
 
   - name: Installing apache pkg
-    apt:
+    package:
         name: apache2
         state: latest
-
+        
   - name: install php
-    apt: 
+    package: 
         name: libapache2-mod-php
         state: latest
+  - name: install samba server
+    package:
+        name: samba
+        state: latest
+    when: ansible_distribution == "Ubuntu"   
 ...
