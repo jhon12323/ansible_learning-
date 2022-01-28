@@ -4,6 +4,7 @@
   tasks:
 
   - name: Installing apache pkg
+    tags: middleware
     package:
         name: 
         - apache2
@@ -11,12 +12,13 @@
         state: latest
         
   - name: install php
+    tags: developer
     package: 
         name: libapache2-mod-php
         state: latest
   - name: install samba server
+    tags: samba
     package:
         name: samba
         state: latest
-    when: ansible_distribution == "Ubuntu"   
-...
+    when: ansible_distribution == "Ubuntu" 
