@@ -9,7 +9,14 @@
         - apache2
         - nginx
         state: latest
-        
+  - name: hosting a sample file
+    tags: apache2
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: neosoft
+      group: neosoft
+      mode: 0644      
   - name: install php
     package: 
         name: libapache2-mod-php
