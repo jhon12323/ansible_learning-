@@ -1,0 +1,29 @@
+---
+- name: creating user
+  tags: always
+  hosts: all
+  become: true
+  tasks: 
+
+  - name: creating a user name simone 
+    tags: always 
+    user:
+       name: simone 
+       group: root
+ 
+  - name: creating ssh keys
+    tags: always
+    authorized_key: 
+      user: simone
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ4ppq8iqaPQ92QiVW1q8O3rJZfIL9HkazqtaHyS4OMyirZr/v6M1zMoOhv8P1bxqDnClwtlXDuiE9YVrL6UXqvj9grxwNgHlX/foBigWTU7AhszIgAfvEFIhLbEw2C4X7/kL9akP65NNletLlc7fdlu1fl6s5cNiX/noIt4jdXPrThmwVZorQ8OcwIK6ZeT+CrBcs20bAmonRdJw+raHwzY8HV6D56tpA3niYaxvANxOER1Wp1zWzrMrnAu7sLykQXy7WfXRxKJjc1SkZt11XgsE8VAGnImp/dqDCkUedzTJhn3Eoz4uM2Acx1xkpW70AuIcvQgOCBRHJpU17CI06O3oe2equPvVEfMiO0bin9rZ5oMDCJA0IrBmdiBtIamwLjhGlCOqyrCJ0Rc1hwwWv1SgBE8acVH04FsWZk38R6df6LfrCC7Y6lu4b9SOjBEcAv7gLNtlqqin6gLCPC8/k/Yhlo8tcv3+9+XN2Pkur9ksVnJyIIi7cw7l+bBvxOW8= neosoft@neosoft-VirtualBox" 
+
+  - name: add sudoers file
+    tags: always 
+    copy: 
+      src: sudoers_simone
+      dest: /etc/sudoers
+      owner: root
+      group: root
+      mode: 0440
+   
+   
