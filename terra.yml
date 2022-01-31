@@ -1,5 +1,5 @@
 ---
-- hosts: test
+- hosts: all
   become: yes
   tasks:
 
@@ -16,7 +16,14 @@
       dest: /var/www/html/index.html
       owner: neosoft
       group: neosoft
-      mode: 0644      
+      mode: 0644  
+  - name: start apache2 
+    tags: apaches
+    service:
+        name: apache2
+        state: started
+    when: ansible_distribution == "Ubuntu"
+           
   - name: install php
     package: 
         name: libapache2-mod-php
@@ -26,7 +33,7 @@
         name: samba
         state: latest
     when: ansible_distribution == "Ubuntu"
-
+ 
 - hosts: workstation
   become: true
   tasks:
