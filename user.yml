@@ -21,7 +21,7 @@
     tags: always 
     copy: 
       src: sudoers_simone
-      dest: /etc/sudoers
+      dest: /etc/sudoers.d/simone
       owner: root
       group: root
       mode: 0440
