@@ -1,0 +1,28 @@
+---
+- name: creating partition
+  hosts: test
+  become: true
+  tasks: 
+  - name: creating partition 800Mib
+    parted: 
+      device: /dev/sdb
+      number: 1
+      state: present
+      part_start: 2MiB
+      part_end: 800MiB
+  - name: Format the disk
+    filesystem: 
+      fstype: ext4
+      dev: /dev/sdb1
+  - name: creating directory
+    file: 
+      path: /mnt/sdb1
+      state: directory
+      mode: '0755' 
+  - name: mount partition
+    mount: 
+      path: /mnt/sdb1
+      src: /dev/sdb1
+      fstype: ext4
+      state: mounted
+     
