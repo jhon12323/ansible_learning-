@@ -1,0 +1,15 @@
+---
+- name: installing aapche2
+  hosts: all
+  become: true
+  connection: ssh
+  tasks: 
+  - name: installing apache2
+    apt: 
+       name: apache2
+       state: present
+  handlers: 
+  - name: restart apache2
+    action: service  name=apache2  state=restarted
+    notify: restart apache2
+ 

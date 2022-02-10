@@ -1,0 +1,7 @@
+--- 
+  - name: os info
+    hosts: all
+    become: true
+    tasks: 
+    - name: os type
+      shell: uname

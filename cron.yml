@@ -1,0 +1,28 @@
+---
+- name: creating a task
+  hosts: test
+  become: true
+  tasks:
+  - name: creating a task to run update
+    cron: 
+      name: "creating a update task"
+      minute: "*"
+      hour: "2"
+      weekday: "0"
+      month: "*"
+      user: neosoft
+      state: present
+      job: "yum update -y"
+  
+  - name: Find logs
+    find:
+      paths: /var/log/
+      patterns: '*.log'
+      recurse: yes
+    register: _logs
+
+  - name: Fetch logs
+    fetch:
+      src: "{{ item.path }}"
+      dest: /tmp/logs
+    with_items: "{{ _logs.files }}"
