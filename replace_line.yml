@@ -1,0 +1,11 @@
+---
+- name: replace
+  hosts: test
+  become: true
+  tasks: 
+  - name: replace a line in a file
+    lineinfile: 
+      path: /home/neosoft/linux.txt
+      regexp: "^linux is very"
+      insertafter: "^linux is very"
+      line: "linux is absent"
